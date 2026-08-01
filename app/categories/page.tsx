@@ -1,5 +1,39 @@
-import type { Metadata } from "next";
-import { CategoryCard } from "@/components/category-card";
-import { categories } from "@/data/books";
-export const metadata: Metadata = { title: "หมวดหมู่หนังสือ" };
-export default function CategoriesPage() { return <section className="container-page py-16 sm:py-20"><p className="font-bold text-forest-600">หาเรื่องที่ใช่</p><h1 className="section-title mt-1">ทุกหมวดหมู่</h1><p className="mt-3 max-w-2xl text-slate-600">เลือกโลกแห่งการระบายสีที่เด็ก ๆ ชอบ แล้วเริ่มต้นช่วงเวลาแห่งความสร้างสรรค์</p><div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{categories.map((category) => <CategoryCard key={category.slug} category={category} />)}</div></section>; }
+import Link from "next/link";
+import { categories } from "@/data/categories";
+
+export default function CategoriesPage() {
+  return (
+    <main className="min-h-screen bg-white px-6 py-12">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="text-4xl font-bold text-green-700">
+          Categories
+        </h1>
+
+        <p className="mt-2 text-gray-600">
+          Browse learning resources by category
+        </p>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              href={`/categories/${category.id}`}
+              className="rounded-2xl border border-gray-200 p-6 shadow-sm transition hover:shadow-md"
+            >
+              <div
+                className={`inline-flex rounded-full px-3 py-1 text-sm font-semibold ${category.color}`}
+              >
+                <span className="mr-2">{category.icon}</span>
+                {category.name}
+              </div>
+
+              <p className="mt-4 text-gray-600">
+                Explore {category.name.toLowerCase()} resources
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
