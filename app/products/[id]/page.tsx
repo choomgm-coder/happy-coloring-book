@@ -17,6 +17,7 @@ export default async function ProductPage({
           <h1 className="text-3xl font-bold text-green-800">
             Product not found
           </h1>
+
           <Link
             href="/categories"
             className="mt-4 inline-block text-green-700 underline"
@@ -32,7 +33,7 @@ export default async function ProductPage({
     <main className="min-h-screen bg-white px-6 py-10">
       <div className="mx-auto max-w-5xl">
         <Link
-          href={`/categories/${product.categoryId}`}
+          href={`/categories/${product.category}`}
           className="text-green-700 underline"
         >
           ← Back to category
