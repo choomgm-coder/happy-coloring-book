@@ -20,14 +20,14 @@ return products.filter((product) => {
 const matchesCategory =
 category === 'All' || product.category === category;
 
-```
+
   const matchesSearch =
     product.title.toLowerCase().includes(search.toLowerCase()) ||
     product.description.toLowerCase().includes(search.toLowerCase());
 
   return matchesCategory && matchesSearch;
 });
-```
+
 
 }, [search, category]);
 
