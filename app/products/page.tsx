@@ -1,14 +1,76 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { products } from '@/data/products';
 
+const categoryOptions = [
+'All',
+'coloring-books',
+'brain-games',
+'math-worksheets',
+];
+
 export default function ProductsPage() {
-return ( <main className="min-h-screen bg-white px-6 py-12"> <div className="mx-auto max-w-6xl"> <div className="text-center"> <h1 className="text-4xl font-bold text-green-700">Printable Learning Resources</h1> <p className="mt-4 text-lg text-gray-600">
-Browse our collection of coloring books, brain games, worksheets,
-flash cards, and educational activities. </p> </div>
+const [search, setSearch] = useState('');
+const [category, setCategory] = useState('All');
+
+const filteredProducts = useMemo(() => {
+return products.filter((product) => {
+const matchesCategory =
+category === 'All' || product.category === category;
 
 ```
-    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
+  const matchesSearch =
+    product.title.toLowerCase().includes(search.toLowerCase()) ||
+    product.description.toLowerCase().includes(search.toLowerCase());
+
+  return matchesCategory && matchesSearch;
+});
+```
+
+}, [search, category]);
+
+return ( <main className="min-h-screen bg-white px-6 py-12"> <div className="mx-auto max-w-6xl"> <div className="text-center"> <h1 className="text-4xl font-bold text-green-700">
+Printable Learning Resources </h1>
+
+```
+      <p className="mt-4 text-lg text-gray-600">
+        Browse coloring books, brain games, worksheets, and educational
+        printables.
+      </p>
+    </div>
+
+    <div className="mt-10 rounded-3xl border border-green-100 bg-green-50 p-6">
+      <div className="grid gap-4 md:grid-cols-2">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="rounded-2xl border border-green-200 bg-white px-4 py-3 outline-none focus:border-green-400"
+        />
+
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="rounded-2xl border border-green-200 bg-white px-4 py-3 outline-none focus:border-green-400"
+        >
+          {categoryOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <p className="mt-4 text-sm text-gray-600">
+        {filteredProducts.length} product(s) found
+      </p>
+    </div>
+
+    <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {filteredProducts.map((product) => (
         <Link
           key={product.id}
           href={`/products/${product.id}`}
