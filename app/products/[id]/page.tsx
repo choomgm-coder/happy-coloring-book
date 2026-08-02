@@ -2,70 +2,51 @@ import Link from "next/link";
 import { books } from "@/data/books";
 
 export default async function ProductPage({
-  params,
+params,
 }: {
-  params: Promise<{ id: string }>;
+params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+const { id } = await params;
 
-  const product = books.find((b) => b.id === id);
+const product = books.find(
+(b) => b.title.toLowerCase().replace(/\s+/g, "-") === id
+);
 
-  if (!product) {
-    return (
-      <main className="min-h-screen bg-white px-6 py-10">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="text-3xl font-bold text-green-800">Product not found</h1>
-          <p className="mt-3 text-gray-600">The product you requested does not exist.</p>
-          <Link href="/categories" className="mt-6 inline-block text-green-700 underline">
-            Back to categories
-          </Link>
-        </div>
-      </main>
-    );
-  }
+if (!product) {
+return ( <main className="min-h-screen bg-white px-6 py-10"> <div className="mx-auto max-w-3xl"> <h1 className="text-3xl font-bold text-green-700">Product not found</h1> <Link href="/products" className="mt-6 inline-block text-green-700 underline">
+← Back to Products </Link> </div> </main>
+);
+}
 
-  return (
-    <main className="min-h-screen bg-white px-6 py-10">
-      <div className="mx-auto max-w-4xl">
-        <Link
-          href={`/categories/${product.category}`}
-          className="text-green-700 underline"
-        >
-          ← Back to category
-        </Link>
+return ( <main className="min-h-screen bg-white px-6 py-10"> <div className="mx-auto max-w-3xl"> <Link href="/products" className="text-green-700 underline">
+← Back to Products </Link>
 
-        <div className="mt-6 grid gap-8 md:grid-cols-2">
-          <div className="aspect-[4/5] rounded-3xl border border-green-100 bg-green-50" />
 
-          <div>
-            <h1 className="text-4xl font-bold text-green-800">{product.title}</h1>
+    <h1 className="mt-6 text-4xl font-bold text-green-800">
+      {product.title}
+    </h1>
 
-            <p className="mt-4 text-gray-600">
-              {product.description}
-            </p>
+    <p className="mt-4 text-lg text-gray-700">
+      {product.description}
+    </p>
 
-            <div className="mt-6 rounded-2xl border border-green-100 bg-white p-5">
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-gray-700">Pages</span>
-                <span className="font-semibold text-green-800">
-                  {product.pages}
-                </span>
-              </div>
-
-              <div className="mt-3 flex items-center justify-between">
-                <span className="font-medium text-gray-700">Age</span>
-                <span className="font-semibold text-green-800">
-                  {product.age}
-                </span>
-              </div>
-            </div>
-
-            <button className="mt-8 rounded-full bg-green-700 px-6 py-3 text-white hover:bg-green-800">
-              Download sample
-            </button>
-          </div>
-        </div>
+    <div className="mt-8 rounded-3xl border border-green-100 bg-green-50 p-6">
+      <div className="flex items-center justify-between border-b border-green-100 pb-4">
+        <span className="font-medium text-gray-700">Pages</span>
+        <span className="text-2xl font-bold text-green-800">
+          {product.pages}
+        </span>
       </div>
-    </main>
-  );
+
+      <div className="mt-4 flex items-center justify-between">
+        <span className="font-medium text-gray-700">Age range</span>
+        <span className="text-lg font-semibold text-green-800">
+          {product.ages}
+        </span>
+      </div>
+    </div>
+  </div>
+</main>
+
+);
 }
