@@ -29,7 +29,7 @@ Browse all printable books and worksheets. </p> </div>
 
             <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
               <span>{product.pages} pages</span>
-              <span>{product.age}</span>
+              <span>{product.ages}</span>
             </div>
 
             <div className="mt-6 inline-flex items-center rounded-full bg-green-600 px-4 py-2 text-sm font-semibold text-white">
