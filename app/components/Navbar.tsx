@@ -23,7 +23,6 @@ Happy Learning Studio </Link>
     </a>
   </div>
 </header>
-```
 
 );
 }
