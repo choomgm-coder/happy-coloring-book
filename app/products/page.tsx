@@ -107,7 +107,6 @@ Printable Learning Resources </h1>
     </div>
   </div>
 </main>
-```
 
 );
 }
