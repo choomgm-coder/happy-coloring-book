@@ -60,6 +60,23 @@ return ( <main className="min-h-screen bg-white px-6 py-10"> <div className="mx-
             ซื้อผ่าน Messenger
           </a>
         </div>
+
+        {/* PromptPay */}
+        <div className="mt-8 rounded-3xl border border-green-100 bg-green-50 p-6">
+          <h2 className="text-xl font-bold text-green-800">
+            ชำระเงินด้วย PromptPay
+          </h2>
+
+          <p className="mt-2 text-gray-600">
+            สแกน QR เพื่อชำระเงินจำนวน 159 บาท
+          </p>
+
+          <img
+            src="/payments/promptpay-159.png"
+            alt="PromptPay QR"
+            className="mt-4 w-64 rounded-2xl border border-green-100"
+          />
+        </div>
       </div>
     </div>
   </div>
