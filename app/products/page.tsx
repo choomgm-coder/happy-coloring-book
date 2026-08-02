@@ -1,43 +1,58 @@
 import Link from "next/link";
-import { books } from "@/data/books";
 
 export default function ProductsPage() {
-const products = books;
+return ( <main className="min-h-screen bg-white px-6 py-10"> <div className="mx-auto max-w-5xl"> <Link href="/" className="text-green-700 underline">
+← กลับหน้าแรก </Link>
 
-return ( <main className="min-h-screen bg-white px-6 py-12"> <div className="mx-auto max-w-6xl"> <div className="text-center"> <h1 className="text-4xl font-bold text-green-700">
-Printable Learning Resources </h1> <p className="mt-3 text-gray-600">
-Browse all printable books and worksheets. </p> </div>
 
-```
-    <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <Link
-          key={product.title}
-          href={`/categories/${product.category}`}
-          className="rounded-3xl border border-green-100 bg-white p-6 hover:border-green-300 hover:shadow-lg transition"
-        >
-          <div className="aspect-[4/3] rounded-2xl bg-green-50" />
+    <div className="mt-8 grid gap-8 md:grid-cols-2">
+      <div>
+        <img
+          src="/products/animal-coloring-book/cover.jpg"
+          alt="สมุดระบายสี"
+          className="w-full rounded-3xl border border-green-100"
+        />
+      </div>
 
-          <div className="mt-5">
-            <h2 className="text-xl font-bold text-green-800">
-              {product.title}
-            </h2>
+      <div>
+        <h1 className="text-4xl font-bold text-green-800">
+          สมุดระบายสี
+        </h1>
 
-            <p className="mt-2 text-sm text-gray-600">
-              {product.description}
-            </p>
+        <p className="mt-4 text-gray-600">
+          ไฟล์ PDF สำหรับพิมพ์ใช้งานได้ทันที เหมาะสำหรับเด็กและผู้ปกครอง
+        </p>
 
-            <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-              <span>{product.pages} pages</span>
-              <span>{product.ages}</span>
-            </div>
-
-            <div className="mt-6 inline-flex items-center rounded-full bg-green-600 px-4 py-2 text-sm font-semibold text-white">
-              View Category →
-            </div>
+        <div className="mt-8 rounded-3xl border border-green-100 p-6">
+          <div className="flex items-center justify-between border-b border-green-100 py-3">
+            <span className="font-semibold text-green-900">แพ็ก 20 เล่ม</span>
+            <span className="text-2xl font-bold text-green-800">฿159</span>
           </div>
-        </Link>
-      ))}
+
+          <div className="flex items-center justify-between py-3">
+            <span className="font-semibold text-green-900">แพ็ก 50 เล่ม</span>
+            <span className="text-2xl font-bold text-green-800">฿199</span>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="/products/animal-coloring-book/sample.pdf"
+            target="_blank"
+            className="rounded-full border border-green-300 px-5 py-3 text-center font-semibold text-green-700 hover:bg-green-50"
+          >
+            ดาวน์โหลด PDF ทดลอง
+          </a>
+
+          <a
+            href="https://m.me/YOUR_PAGE"
+            target="_blank"
+            className="rounded-full bg-green-600 px-5 py-3 text-center font-semibold text-white hover:bg-green-700"
+          >
+            ซื้อผ่าน Messenger
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </main>
